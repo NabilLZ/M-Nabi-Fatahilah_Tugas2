@@ -1,0 +1,100 @@
+//Muhammad Nabil Fatahilah_235150401111063_Pemlan
+
+package tugas2;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class MainClass {
+
+    public static void main(String[] args) {
+        ArrayList<String> namas = new ArrayList<>();
+        ArrayList<String> nims = new ArrayList<>();
+        ArrayList<String> alamats = new ArrayList<>();
+
+        Scanner scanner = new Scanner(System.in);
+        DataMahasiswa datamahasiswa = new DataMahasiswa();
+        boolean next = true;
+        while (next) {
+            System.out.print("masukkan nim : ");
+            String nim = scanner.nextLine();
+            nims.add(nim);
+
+            System.out.print("masukkan nama : ");
+            String nama = scanner.nextLine();
+            namas.add(nama);
+
+            System.out.print("masukkan alamat: ");
+            String alamat = scanner.nextLine();
+            alamats.add(alamat);
+
+            System.out.print("tambah lagi? ");
+            String tambah = scanner.nextLine();
+            if (tambah.equals("t")) {
+                next = false;
+            }
+            Mahasiswa mahasiswa = new Mahasiswa(nim, nama, alamat);
+            datamahasiswa.addMahasiswa(mahasiswa);
+        }
+
+        System.out.println("==================================");
+        for (Mahasiswa mahasiswa : datamahasiswa.getMahasiswa()) {
+            System.out.println(mahasiswa.getNim() + " | " + mahasiswa.getNama() + " | " + mahasiswa.getAlamat());
+        }
+        System.out.println("==================================");
+    }
+}
+
+class Mahasiswa {
+    private String nim;
+    private String nama;
+    private String alamat;
+
+    public Mahasiswa(String nim, String nama, String alamat) {
+        this.nim = nim;
+        this.nama = nama;
+        this.alamat = alamat;
+    }
+
+    public String getNim() {
+        return nim;
+    }
+
+    public void setNim(String nim) { //digunakan ketika mau mengupdate data
+        this.nim = nim;         
+    }
+
+    public String getNama() {
+        return nama;
+    }
+
+    public void setNama(String nama) { //digunakan ketika mau mengupdate data
+        this.nama = nama;
+    }
+
+    public String getAlamat() {
+        return alamat;
+    }
+
+    public void setAlamat(String alamat) { //digunakan ketika mau mengupdate data
+        this.alamat = alamat;
+    }
+}
+
+
+class DataMahasiswa {
+    private ArrayList<Mahasiswa> mahasiswas;
+
+    public DataMahasiswa() {
+        mahasiswas = new ArrayList<>();
+    }
+
+    public void addMahasiswa(Mahasiswa mahasiswa) {
+        mahasiswas.add(mahasiswa);
+    }
+
+    public ArrayList<Mahasiswa> getMahasiswa() {
+        return mahasiswas;
+    }
+}
+
